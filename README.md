@@ -1,29 +1,43 @@
 # FceRecognition
 
 #Introduction
+
 It is basically an attendance system project whhich uses **"Face Recognition"** to record attendance.
 It also consist **Student Management** System using MYsql database connected with aws cloud.
 It is developed by python3.10 using vscode.
 
+
 #Requirements
-RAM=8GB
-good processor
-good light while taking sample
-Internet Connectivity to access Cloud Database
+
+RAM=8GB,
+good processor,
+good light while taking sample,
+Internet Connectivity to access Cloud Database.
+
 
 #Recomended Modules
-tkinter 
-Face Recognition Module
-OpenCV// **pip install opencv-contrib-python**
+
+tkinter, 
+Face Recognition Module,
+OpenCV// **pip install opencv-contrib-python**.
+
 
 #Installation
-acces full folder and just run the main.py file
+
+acces full folder and just run the main.py file.
+
 
 #Configuration
+
 the home screen will be available with 8 buttons. Follow the steps to start your app experience:
-![Screenshot 2022-05-25 005303](https://user-images.githubusercontent.com/105501094/170115962-c58292ff-c2e7-469f-93fe-4d2921d8906a.jpg)
+
+
+![Screenshot 2022-05-25 005303](https://user-images.githubusercontent.com/105501094/170267800-a07c15d7-e381-4943-85bc-4db36b9ba0d8.jpg)
+
+
 
 Steps:
+
 1. Click on "student details button", Fill all the details and click on **save** button, then click on **Take sample photo** to take sample.
 2. **Proper light should be there while camera takes sample**, close the window after sample is taken aur return to home window.
 3. Click on **train data** button and train the sample. close the window and click on **Face Recognition button**.
