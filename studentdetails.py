@@ -1,11 +1,12 @@
 from tkinter import*
 from tkinter import ttk
 import cv2
+from time import strftime
+from datetime import datetime
 from turtle import bgcolor
 from PIL import Image,ImageTk
 from cv2 import IMREAD_REDUCED_GRAYSCALE_2
 from tkinter import messagebox
-from django.db import DatabaseError
 import mysql.connector
 
 
@@ -15,7 +16,7 @@ class Student:
         self.root.geometry("1400x650+0+0")
         self.root.title("Student Details")
 
-        #=========Variables=============
+#================Variables================
         self.var_dep=StringVar()
         self.var_course=StringVar()
         self.var_year=StringVar()
@@ -32,7 +33,7 @@ class Student:
         self.var_address=StringVar()
         self.var_teacher=StringVar()
  #bgcolor
-        bg_color=Label(self.root,bg="lightpink")
+        bg_color=Label(self.root,bg="grey")
         bg_color.place(x=0,y=0,width=1400,height=650)
 
 #centre image
@@ -46,7 +47,7 @@ class Student:
 
 
 #ryt corner image
-        img2=Image.open(r"Images\sms7.png")
+        img2=Image.open(r"Images\sms7.jpg")
         img2=img2.resize((450,140), Image.ANTIALIAS)
         self.photoimg2=ImageTk.PhotoImage(img2)
 
@@ -68,8 +69,19 @@ class Student:
        
 
  #Title
-        title_lbl=Label(self.root,text="STUDENT MANAGEMENT SYSYTEM",font=("times new roman",25,"bold" ),fg="darkgreen")
+        title_lbl=Label(self.root,text="STUDENT MANAGEMENT SYSYTEM",font=("Monaco",25,"bold" ),fg="darkgreen")
         title_lbl.place(x=40,y=145,width=1200,height=40)
+
+     #======Time=======
+
+        def time():
+                string = strftime('%H:%M:%S %p')
+                lbl.config(text= string)
+                lbl.after(1000,time)   
+
+        lbl=Label(self.root,font=('times new roman',14,'bold'),bg="white",fg='black')
+        lbl.place(x=1150,y=20,width=110,height=30)
+        time()        
 
  #Frames
 
@@ -231,15 +243,13 @@ class Student:
 
         #buttonFrame2
         b_frame2=Frame(cs_frame,bd=2,relief=RIDGE)
-        b_frame2.place(x=5,y=233,width=578,height=33)
+        b_frame2.place(x=140,y=234,width=300,height=33)
 
         #take photo sample
-        sam1_btn=Button(b_frame2,command=self.generate_dataset,text="Take Photo Sample",width=31,font=("times new roman",12,"bold"),bg="orange",fg="Black")
+        sam1_btn=Button(b_frame2,command=self.generate_dataset,text="Take Photo Sample",width=33,font=("times new roman",12,"bold"),bg="orange",fg="Black")
         sam1_btn.grid(row=0,column=0)
 
-        #Update photo Sample
-        up_btn=Button(b_frame2,text="Update Photo Sample",width=31,font=("times new roman",12,"bold"),bg="orange",fg="Black")
-        up_btn.grid(row=0,column=1)
+        
 
 
 
@@ -247,32 +257,10 @@ class Student:
         right_frame=LabelFrame(main_frame,bd=2,relief=RIDGE,text="Student Details",font=("times new roman",12,"bold"))
         right_frame.place(x=630,y=5,width=610,height=430)
 
-#Search System
-        ss_frame=LabelFrame(right_frame,bd=2,relief=RIDGE,text="Search System",font=("times new roman",12,"bold"))
-        ss_frame.place(x=5,y=2,width=590,height=70)
-
-
-        #search
-        search_label=Label(ss_frame,text='Search By:',font=("times new roman",12,"bold"),bg="white")
-        search_label.grid(row=0,column=0,padx=10,pady=5,sticky=W)
-
-        search_combo=ttk.Combobox(ss_frame,font=("times new roman",12,"bold"),state="readonly",width=10)
-        search_combo["values"]=("Select","Roll_No","Phone_No")
-        search_combo.current(0)
-        search_combo.grid(row=0,column=1,padx=10,pady=5,sticky=W)
-
-        search_entry=ttk.Entry(ss_frame,width="15",font=("times new roman",12,))
-        search_entry.grid(row=0,column=2,padx=10,pady=5,sticky=W)
-
-        search_btn=Button(ss_frame,text="Search",width=10,font=("times new roman",12,"bold"),bg="Lightblue",fg="Black")
-        search_btn.grid(row=0,column=3,padx=5)
-
-        show_btn=Button(ss_frame,text="Show All",width=10,font=("times new roman",12,"bold"),bg="Lightblue",fg="Black")
-        show_btn.grid(row=0,column=4,padx=5)
 
     #Table frame
         table_frame=Frame(right_frame,bd=2,relief=RIDGE)
-        table_frame.place(x=5,y=80,width=590,height=320)
+        table_frame.place(x=5,y=5,width=590,height=400)
 
         #scrollbars
         scroll_x=ttk.Scrollbar(table_frame,orient=HORIZONTAL)
@@ -323,13 +311,28 @@ class Student:
         self.student_table.bind("<ButtonRelease>",self.get_cursor)
         self.fetch_data()
 
+#exit
+        B8=Image.open(r"Images\exit.jpg")
+        B8=B8.resize((70,70), Image.ANTIALIAS)
+        self.photoB8=ImageTk.PhotoImage(B8)
+
+        b8=Button(self.root,command=self.iExit,image=self.photoB8,cursor="hand2",bg="black")
+        b8.place(x=1180,y=550,width=70,height=70)
+
+    def iExit(self):
+                self.iExit=messagebox.askyesno("Exit Window","Are you sure, you want to exit",parent=self.root)
+                if self.iExit >0:
+                        self.root.destroy()
+                else:
+                        return   
+
     #===============Function Declaration===============
     def add_data(self):
         if self.var_dep.get()=="Select Department" or self.var_stdname.get()=="" or self.var_stdid.get()=="":
             messagebox.showerror("Error","All fields are required",parent=self.root)
         else:
             try:
-                conn=mysql.connector.connect(host="localhost",username="root",password="Rehan@2002",database="face_recogniser")
+                conn=mysql.connector.connect(host="facerecognition.cylhakipgxhv.ap-south-1.rds.amazonaws.com",username="root",password="Rehan2002",database="facerecognition")
                 my_cursor=conn.cursor()
                 my_cursor.execute("insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
                                                                                                         self.var_dep.get(),
@@ -361,7 +364,7 @@ class Student:
    
     #===============Data Fetch Function===========
     def fetch_data(self):
-        conn=mysql.connector.connect(host="localhost",username="root",password="Rehan@2002",database="face_recogniser")
+        conn=mysql.connector.connect(host="facerecognition.cylhakipgxhv.ap-south-1.rds.amazonaws.com",username="root",password="Rehan2002",database="facerecognition")
         my_cursor=conn.cursor()
         my_cursor.execute("select * from student")
         data=my_cursor.fetchall()
@@ -404,7 +407,7 @@ class Student:
             try:
                 Update=messagebox.askyesno("Update","Do you want to Update this student details",parent=self.root)
                 if Update>0:
-                    conn=mysql.connector.connect(host="localhost",username="root",password="Rehan@2002",database="face_recogniser")
+                    conn=mysql.connector.connect(host="facerecognition.cylhakipgxhv.ap-south-1.rds.amazonaws.com",username="root",password="Rehan2002",database="facerecognition")
                     my_cursor=conn.cursor()  
                     my_cursor.execute("Update student set Dep=%s,Course=%s,Year=%s,Semester=%s,Name=%s,Division=%s,Roll=%s,Gender=%s,Dob=%s,Email=%s,Phone=%s,Address=%s,Teacher=%s,PhotoSample=%s where Student_id=%s",(
 
@@ -444,7 +447,7 @@ class Student:
             try:
                 delete=messagebox.askyesno("Delete page","Do you want to delete this Student data",parent=self.root)
                 if delete>0:
-                    conn=mysql.connector.connect(host="localhost",username="root",password="Rehan@2002",database="face_recogniser")
+                    conn=mysql.connector.connect(host="facerecognition.cylhakipgxhv.ap-south-1.rds.amazonaws.com",username="root",password="Rehan2002",database="facerecognition")
                     my_cursor=conn.cursor()
                     sql="delete from student where Student_id=%s"
                     val=(self.var_stdid.get(),)
@@ -485,7 +488,7 @@ class Student:
             messagebox.showerror("Error","All fields are required",parent=self.root)
          else:
             try:
-                conn=mysql.connector.connect(host="localhost",username="root",password="Rehan@2002",database="face_recogniser")
+                conn=mysql.connector.connect(host="facerecognition.cylhakipgxhv.ap-south-1.rds.amazonaws.com",username="root",password="Rehan2002",database="facerecognition")
                 my_cursor=conn.cursor()
                 my_cursor.execute("Select * from student")
                 myresult=my_cursor.fetchall()
@@ -547,7 +550,7 @@ class Student:
 
                 cap.release()
                 cv2.destroyAllWindows()
-                messagebox.showinfo("Result","Generating Data seys Completed!!",parent=self.root)
+                messagebox.showinfo("Result","Generating Data sets Completed!!",parent=self.root)
             except Exception as es:
                 messagebox.showerror("Error",f"Due To:{str(es)}",parent=self.root)    
 
