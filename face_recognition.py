@@ -20,12 +20,31 @@ class Face_Recognition:
         self.root.geometry("1400x650+0+0")
         self.root.title("Face Recognition")
 
+
+        bgimg=Image.open(r"Images\bgg.jpg")
+        bgimg=bgimg.resize((1300,650), Image.ANTIALIAS)
+        self.photobgimg=ImageTk.PhotoImage(bgimg)
+
+        f_lbl=Label(self.root,image=self.photobgimg)
+        f_lbl.place(x=0,y=0,width=1300,height=650)
+
      
 
 
         #Title
-        title_lbl=Label(self.root,text="FACE RECOGNITION",font=("times new roman",25,"bold" ),bg="lightyellow",fg="Brown")
+        title_lbl=Label(self.root,text="FACE RECOGNITION",font=("Monaco",30,"bold" ),bg="azure2",fg="Brown")
         title_lbl.place(x=40,y=10,width=1200,height=50)
+
+         #======Time=======
+
+        def time():
+                string = strftime('%H:%M:%S %p')
+                lbl.config(text= string)
+                lbl.after(1000,time)   
+
+        lbl=Label(self.root,font=('times new roman',14,'bold'),bg="white",fg='black')
+        lbl.place(x=1150,y=20,width=110,height=30)
+        time()    
 
 
         #Images
@@ -47,6 +66,21 @@ class Face_Recognition:
         #text
         text_text=Label(self.root,text="Tap Above button for face recognition:",font=("times new roman",14,"bold" ),fg="Black")
         text_text.place(x=400,y=490,width=350,height=20)
+
+#exit
+        B8=Image.open(r"Images\exit.jpg")
+        B8=B8.resize((70,70), Image.ANTIALIAS)
+        self.photoB8=ImageTk.PhotoImage(B8)
+
+        b8=Button(self.root,command=self.iExit,image=self.photoB8,cursor="hand2",bg="black")
+        b8.place(x=1180,y=550,width=70,height=70)
+
+    def iExit(self):
+                self.iExit=messagebox.askyesno("Exit Window","Are you sure, you want to exit",parent=self.root)
+                if self.iExit >0:
+                        self.root.destroy()
+                else:
+                        return   
 
  #===========================Attendance===============
     def mark_attendance(self,si,r,n,d):
@@ -79,7 +113,7 @@ class Face_Recognition:
                 id,predict=clf.predict(gray_image[y:y+h,x:x+w])
                 confidence=int((100*(1-predict/300)))
 
-                conn=mysql.connector.connect(host="localhost",username="root",password="Rehan@2002",database="face_recogniser")
+                conn=mysql.connector.connect(host="facerecognition.cylhakipgxhv.ap-south-1.rds.amazonaws.com",username="root",password="Rehan2002",database="facerecognition")
                 my_cursor=conn.cursor()
 
                 my_cursor.execute("select Name from student where Student_id="+str(id))
@@ -100,10 +134,10 @@ class Face_Recognition:
 
 
                 if confidence>77:
-                     cv2.putText(img,f"ID:{si}",(x,y-75),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),3)
-                     cv2.putText(img,f"Roll:{r}",(x,y-55),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),3)
-                     cv2.putText(img,f"Name:{n}",(x,y-30),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),3)
-                     cv2.putText(img,f"Department:{d}",(x,y-5),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),3)
+                     cv2.putText(img,f"ID:{si}",(x,y-85),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),2)
+                     cv2.putText(img,f"Roll:{r}",(x,y-55),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),2)
+                     cv2.putText(img,f"Name:{n}",(x,y-30),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),2)
+                     cv2.putText(img,f"Department:{d}",(x,y-5),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,0,0),2)
                      self.mark_attendance(si,r,n,d)
 
                 else:
