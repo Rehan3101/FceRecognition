@@ -223,7 +223,7 @@ class Attendance:
                 export_write=csv.writer(myfile,delimiter=",")
                 for i in mydata:
                     export_write.writerow(i)
-                messagebox.showinfo("Success","Your Data is exported to" +os.path.basename(file_name)+ "successfully")
+                messagebox.showinfo("Success","Your Data is exported to" +os.path.basename(file_name)+ "successfully",parent=self.root)
         except Exception as es:
                 messagebox.showerror("Error",f"Due TO:{str(es)}",parent=self.root)
 
