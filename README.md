@@ -2,9 +2,9 @@
 
 #Introduction
 
-It is basically an attendance system project whhich uses **"Face Recognition"** to record attendance.
-It also consist **Student Management** System using MYsql database connected with aws cloud.
-It is developed by python3.10 using vscode.
+1.It is basically an attendance system project which uses **"Face Recognition"** to record attendance.
+2.It also consist **Student Management** System using MYsql database connected with aws cloud.
+3.It is developed by python3.10 using vscode.
 
 
 #Requirements
