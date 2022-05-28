@@ -251,14 +251,6 @@ class Attendance:
         self.var_date.set("")  
         self.var_att.set("")
 
-        
-               
-
-        
-
-
-
-
 
 
 if __name__ == "__main__":

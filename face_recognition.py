@@ -60,7 +60,7 @@ class Face_Recognition:
 
 
         #Detect Face Button
-        face_text=Button(self.root,text="RECOGNIZE FACE",command=self.face_rec,cursor="hand2",font=("times new roman",24,"bold" ),bg="green",fg="darkRed")
+        face_text=Button(self.root,text="RECOGNIZE FACE",command=self.face_rec,cursor="hand2",font=("times new roman",24,"bold" ),bg="floralwhite",fg="darkGreen")
         face_text.place(x=400,y=430,width=450,height=50)
 
         #text
