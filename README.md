@@ -10,16 +10,16 @@
 #Requirements
 1. High Speed Internet Connectivity(login system is cloud database based)
 2. RAM=8Gb
-3. screen size= 1400x650
+3. screen size= 1400x650(size greater than it can cause changes in UI as it is a desktop application(have a fixed geometry))
 4. Take Sample from the camera in laptop(not webcam).
 changes to do use web cam:
-1. studentdetails.py line 536         //{cap=cv2.VideoCapture(0)} 0 to 1 to use webcam     
+1. studentdetails.py line 536         //{cap=cv2.VideoCapture(0)} change 0 to 1 to use webcam     
 2. face_recognition.py line 160
 
 
 #Recomended Modules
 1. tkinter, tkcalender
-2. Face Recognition Module,
+2. Face Recognition Module,  //git clone https://github.com/ageitgey/face_recognition.git
 3. OpenCV// if errors shows for cv2 attribute face use **pip install opencv-contrib-python** and restart system.
 4. Pillow 
 5. MySQL connector
@@ -72,7 +72,7 @@ Steps:
 
 7. your attendance is visible, you can also export the details and make a new csv file by export button.
 8. you can update and delete database in **"Student Details"** by the given buttons.
-9. Can access the other buttons for About developer, support and a exit button.
+9. Can access the other buttons for **About developer, support and a exit button**.
 
 
 
