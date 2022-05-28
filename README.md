@@ -9,11 +9,6 @@ It is developed by python3.10 using vscode.
 
 #Requirements
 
-RAM=8GB,
-good processor,
-good light while taking sample,
-Internet Connectivity to access Cloud Database.
-
 
 #Recomended Modules
 

@@ -13,7 +13,7 @@ class Developer:
     def __init__(self,root):
         self.root=root
         self.root.geometry("1400x650+0+0")
-        self.root.title("About Developer")
+        self.root.title("About Developer & App info")
 
        
 
@@ -26,7 +26,7 @@ class Developer:
         f_lbl.place(x=0,y=0,width=1280,height=650)
 
 #Title
-        title_lbl=Label(self.root,text="ABOUT DEVELOPER",font=("Monaco",40,"bold","bold" ),bg="darkslategray",fg="azure1")
+        title_lbl=Label(self.root,text="ABOUT DEVELOPER & APP INFO",font=("Monaco",40,"bold","bold" ),bg="darkslategray",fg="azure1")
         title_lbl.place(x=0,y=0,width=1400,height=40) 
 
  #======Time=======
@@ -54,6 +54,28 @@ class Developer:
         
         id_label=Label(self.root,text='from ABES Engineering College, Ghaziabad.',font=("times new roman",12,"bold"))
         id_label.place(x=450,y=160)
+
+        id_label=Label(self.root,text='Technical Skills & Area of Interest:',font=("times new roman",12,"bold"), bg="black",fg="white")
+        id_label.place(x=450,y=200)
+
+        id_label=Label(self.root,text='C, C++, Python, (HTML,CSS,JS) and learning Java.',font=("times new roman",12,"bold"))
+        id_label.place(x=450,y=230)
+
+        id_label=Label(self.root,text='Interested in Data Structures, Application Development and Ethical Hacking.',font=("times new roman",12,"bold"))
+        id_label.place(x=450,y=260)
+
+        id_label=Label(self.root,text='Courses & Certifications:',font=("times new roman",12,"bold"), bg="black",fg="white")
+        id_label.place(x=450,y=300)
+
+        id_label=Label(self.root,text='Programming Essentials in Python from CISCO\n Java from beginner to expert from UDEMY.',font=("times new roman",12,"bold"))
+        id_label.place(x=450,y=330)
+
+        id_label=Label(self.root,text='About this Project:',font=("times new roman",12,"bold"), bg="black",fg="white")
+        id_label.place(x=450,y=400)
+
+        id_label=Label(self.root,text='Attendance Management System with Student management system. \n Used python framework "TKINTER" for Frontend and Backend. \n Uses OpenCV and Face Recognition module to take sample photos  and recognize attendant.\n LBPH haarcascade frontalface algorithm is used.\n MySQL remote server for Database connected to AWS cloud.',font=("times new roman",12,"bold"))
+        id_label.place(x=450,y=430)
+
 
 #exit
         B8=Image.open(r"Images\exit.jpg")

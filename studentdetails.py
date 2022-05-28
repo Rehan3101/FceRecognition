@@ -8,6 +8,7 @@ from PIL import Image,ImageTk
 from cv2 import IMREAD_REDUCED_GRAYSCALE_2
 from tkinter import messagebox
 import mysql.connector
+from tkcalendar import DateEntry
 
 
 class Student:
@@ -129,7 +130,7 @@ class Student:
         sem_label.grid(row=1,column=2,padx=10,sticky=W)
         
         sem_combo=ttk.Combobox(curr_frame,textvariable=self.var_semester,font=("times new roman",12,"bold"),state="readonly",width=15)
-        sem_combo["values"]=("Select Semester","Sem-1","Sem-2")
+        sem_combo["values"]=("Select Semester","Odd","Even")
         sem_combo.current(0)
         sem_combo.grid(row=1,column=3,padx=2,pady=10,sticky=W)
 
@@ -181,8 +182,8 @@ class Student:
         dob_label=Label(cs_frame,text='DOB:',font=("times new roman",12,"bold"),bg="white")
         dob_label.grid(row=2,column=2,padx=10,pady=5,sticky=W)
 
-        dob_entry=ttk.Entry(cs_frame,textvariable=self.var_dob,width="17",font=("times new roman",12,))
-        dob_entry.grid(row=2,column=3,padx=10,pady=5,sticky=W)
+        DOB_combo=DateEntry(cs_frame,textvariable=self.var_dob, width=22, year=2022, month=5, day=26, background='darkblue', foreground='white', borderwidth=2)
+        DOB_combo.grid(row=2,column=3,padx=0, pady=5)
 
         #Email
         email_label=Label(cs_frame,text='Email:',font=("times new roman",12,"bold"),bg="white")
